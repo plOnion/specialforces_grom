@@ -59,4 +59,20 @@ const slideList = [{
    window.addEventListener('keydown', keyChangeSlide)
 
 
-   
+   const header = document.querySelector(".main-header");
+
+   window.addEventListener("scroll", ()=>{
+   if (window.scrollY > 150){
+       if (header.style.position === "fixed")return;
+       else{
+       header.style.position = "fixed";
+       console.log("fixed");
+    }
+   } else {
+       if (header.style.position === "relative") return;
+       else {
+        header.style.position = "relative";
+        console.log("relative");
+       }
+   }
+})
