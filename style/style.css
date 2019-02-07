@@ -73,7 +73,10 @@ img {
 }
 
 .main-nav li:hover{
-	background: #1a1044;
+	background:  #1a1044;
+	transform: scale(1.4);
+	z-index: 2;
+	border-radius: 3px;
 }
 
 .main-nav a {
@@ -100,7 +103,7 @@ img {
 
 @media (min-width:960px) {
 	.main-header .container {
-		justify-content: space-around;
+		justify-content: space-between;
 	}
 }
 			
@@ -108,7 +111,6 @@ img {
 	background: #121312;
 	box-shadow: 0 1px 6px rgba(0,0,0,.1);
 	color: #FFF;
-	/* position: fixed; */
 	top: 0;
 	width: 100%;
 	z-index: 10;

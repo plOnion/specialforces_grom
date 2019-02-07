@@ -8,7 +8,7 @@ const slideList = [{
    },
    {
     img: "img/slide3.jpg",
-    text: 'Trzeci tekst'
+    text: 'Dopóki walczysz jesteś zwycięzcą.'
    }];
    
    const image = document.querySelector('img.slide');
