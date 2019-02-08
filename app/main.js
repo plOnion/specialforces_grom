@@ -62,17 +62,71 @@ const slideList = [{
    const header = document.querySelector(".main-header");
 
    window.addEventListener("scroll", ()=>{
-   if (window.scrollY > 150){
+   if (window.scrollY > 100){
        if (header.style.position === "fixed")return;
        else{
        header.style.position = "fixed";
-       console.log("fixed");
+       header.style.opacity = "0.8";
     }
    } else {
        if (header.style.position === "relative") return;
        else {
         header.style.position = "relative";
-        console.log("relative");
+        header.style.opacity = "1";
        }
    }
 })
+
+
+
+ // timeline
+ {let active = 0;
+ const TLli = [...document.querySelectorAll("#TLDates li")];
+ const TLDates = document.querySelector("#TLDates");
+ const datesLength = TLli.length;
+ const TLDesc = [...document.querySelectorAll("#TLDesc article")];
+ // TLDesc.eq(0).show();
+
+ const fader = (element, index) => {
+     let op = 1;  // initial opacity
+     const timer = setInterval(()=> {
+         if (op <= 0.1){
+             clearInterval(timer);
+             element.style.display = "";
+         }
+         element.style.opacity = op;
+         element.style.filter = `alpha(opacity=${op * 100})`;
+         op -= op * 0.1;
+     }, 50);
+
+     let opi = 0.1;
+     const timerIn = setInterval(()=> {
+         index.style.display = "block";
+         if (opi >= 1){
+             clearInterval(timerIn);
+         }
+         index.style.opacity = opi;
+         opi += opi * 0.1;
+     }, 50);
+ }
+
+ const fade = (index) =>{
+     fader(TLDesc[active], TLDesc[index]);
+     active = index;
+     document.querySelector("#TLDesc article").classList.remove("first");
+                 }
+
+ TLli.forEach((item, index) =>{
+ item.addEventListener("click", (e)=>{
+     let move = index * 80;
+     TLli.forEach((li)=>{
+         li.classList.remove("active");
+     })
+     e.target.classList.add("active");
+     TLDates.style.transform = `translateX(-${move}px)`;
+     fade(index);
+     })
+     
+     
+ })
+}
